@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float runSpeed = 8f;
+    public float horizontalRunSpeed, verticalRunSpeed;
     public float walkSpeed = 6f;
     public float gravity = 10f;
     public float jumpHeight = 15f;
@@ -24,11 +24,20 @@ public class Player : MonoBehaviour
     void Update()
     {
         float inputH = Input.GetAxis("Horizontal");
-        float inputV = Input.GetAxis("Vertical");
-        Move(inputH, inputV);
+        float inputV = Input.GetAxis("Vertical"); 
+        Move(inputH, inputV);      
 
         if (IsGrounded())
         {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                Debug.Log("SPrint");
+                Move(inputH * 2f, inputV * 2f);
+
+                horizontalRunSpeed = motion.x;
+                verticalRunSpeed = motion.z;
+            }
+
             if (Input.GetButtonDown("Jump"))
             {
                 motion.y = jumpHeight;
