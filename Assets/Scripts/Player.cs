@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                Debug.Log("SPrint");
                 Move(inputH * 2f, inputV * 2f);
 
                 horizontalRunSpeed = motion.x;
