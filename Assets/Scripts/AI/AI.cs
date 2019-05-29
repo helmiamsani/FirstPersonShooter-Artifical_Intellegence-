@@ -8,7 +8,7 @@ public class AI : MonoBehaviour
     public float maxVelocity = 15f, maxDistance = 10f;
     public Vector3 velocity;
     public SteeringBehaviour[] behaviours;
-    public NavMeshAgent agent;
+    private NavMeshAgent agent;
 
     private void Awake()
     {
@@ -34,5 +34,17 @@ public class AI : MonoBehaviour
             velocity = velocity.normalized * maxVelocity;
         }
         // Step 4). Apply velocity to NavMeshAgent
+        if(velocity.magnitude > 0)
+        {
+            // Position for next frame (using velocity)
+            Vector3 desiredPosition = transform.position + velocity * Time.deltaTime;
+            NavMeshHit hit;
+            // Check if the desired position is within the NavMesh
+            if(NavMesh.SamplePosition(desiredPosition, out hit, maxDistance, -1))
+            {
+                // Set the agent's destination to the nav hit point
+                agent.SetDestination(hit.position);
+            }
+        }
     }
 }
