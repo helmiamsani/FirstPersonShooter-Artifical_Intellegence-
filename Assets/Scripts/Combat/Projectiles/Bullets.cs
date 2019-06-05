@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullets : Projectile
 {
+    public int damage = 10;
+
     public float speed = 10f;
     public Transform line;
     public GameObject effectPrefab;
@@ -29,14 +31,23 @@ public class Bullets : Projectile
 
     public void OnCollisionEnter(Collision col)
     {
+
+        // Get the contact point
+        ContactPoint contact = col.contacts[0];
+
         // If there is an attached effect
         if (effectPrefab)
         {
-            // Get the contact point
-            ContactPoint contact = col.contacts[0];
             // Spawn the effect - and rotate to contact normal
-            Instantiate(effectPrefab, contact.point, Quaternion.LookRotation(contact.normal));
+           // Instantiate(effectPrefab, contact.point, Quaternion.LookRotation(contact.normal));
         }
+
+        Enemy enemy = col.collider.GetComponent<Enemy>();
+        if (enemy)
+        {
+            enemy.TakeDamage(damage);
+        }
+
         // Destroy self - "Hello darkness my old friend"
         Destroy(gameObject);
     }
