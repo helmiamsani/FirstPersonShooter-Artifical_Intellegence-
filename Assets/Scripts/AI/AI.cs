@@ -8,16 +8,7 @@ public class AI : MonoBehaviour
     public float maxVelocity = 15f, maxDistance = 10f;
     public Vector3 velocity;
     public SteeringBehaviour[] behaviours;
-<<<<<<< HEAD
     public NavMeshAgent agent;
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-=======
-    private NavMeshAgent agent;
-
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -54,6 +45,5 @@ public class AI : MonoBehaviour
                 agent.SetDestination(hit.position);
             }
         }
->>>>>>> 61cc80670c7eae2b58482aa9e1b201eecab8ac10
     }
 }

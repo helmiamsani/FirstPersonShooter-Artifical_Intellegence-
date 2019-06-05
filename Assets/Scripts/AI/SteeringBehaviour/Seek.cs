@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class Seek : SteeringBehaviour
 {
-<<<<<<< HEAD
-=======
     public Transform target;
-    
->>>>>>> 61cc80670c7eae2b58482aa9e1b201eecab8ac10
+
     public override Vector3 GetForce(AI owner)
     {
         // SET force to zero
         Vector3 force = Vector3.zero;
-<<<<<<< HEAD
+
         // Implement SEEK here
-=======
 
         // If target is not null
         if (target)
@@ -26,7 +22,6 @@ public class Seek : SteeringBehaviour
             force += desiredForce.normalized * weighting;
         }
 
->>>>>>> 61cc80670c7eae2b58482aa9e1b201eecab8ac10
         // RETURN force
         return force;
     }
